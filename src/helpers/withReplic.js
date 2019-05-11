@@ -1,0 +1,1 @@
+const withReplic = 'withReplic Function'

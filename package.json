@@ -1,0 +1,19 @@
+{
+  "name": "replic",
+  "version": "1.0.0",
+  "description": "Lightweight ORM",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test"
+  },
+  "keywords": [
+    "A",
+    "lightweight",
+    "ORM"
+  ],
+  "author": "Wilson Anciro",
+  "license": "ISC",
+  "dependencies": {
+    "pluralize": "^7.0.0"
+  }
+}
