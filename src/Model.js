@@ -1,4 +1,5 @@
 const pluralize = require('./helpers/pluralize')
+const SqlBuilder = require('./SqlBuilder')
 
 class Model {
   constructor() {
@@ -29,14 +30,29 @@ class Model {
     console.log(`SELECT * FROM ${tableName}${whereClause},`, whereValues)
   }
 
+  static select(...fieldArgs) {
+    if (!fieldArgs.length) {
+      throw new Error(`Invalid select method arguments`)
+    }
+
+    const tableName = Model.getTableName(this)
+    const fields = fieldArgs[0].constructor == String ? fieldArgs : fieldArgs[0]
+
+    console.log(`SELECT ${fields.join(', ')} FROM ${tableName}`)
+  }
+
   static foo() {
     let table = Model.getTableName(this)
     console.log(table)
   }
 
   static getTableName(model) {
+    if (!model) {
+      model = this
+    }
+
     const schema = model.schema
-    return model.table ? model.table : pluralize(model.name.toLowerCase())
+    return schema.table ? schema.table : pluralize(model.name.toLowerCase())
   }
 
   save() {
